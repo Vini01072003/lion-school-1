@@ -1,26 +1,37 @@
-const getStudentInformartions = (aluno) => {
+const getStudentInformartions = () => {
 
     const fetchData = async() => {
+
+        let aluno = localStorage.getItem('matricula')
         let url = `https://api-lionschool.onrender.com/v1/lion-school/alunos/${aluno}`
         const response = await fetch(url);
         const data = await response.json();
         return data;
     };
 
+    var largura = window.innerWidth;
+
     const ctx = document.getElementById("myChart");
+    ctx.style.height = '500px'
+    ctx.style.width = '700px'
+
+    if (largura < 400) {
+        ctx.style.height = '300px'
+        ctx.style.width = '350px'
+    } else if (largura <= 650) {
+        ctx.style.height = '300px'
+        ctx.style.width = '500px'
+    }
 
     const updateChart = async() => {
         const data = await fetchData();
 
-        const disciplineName = data.disciplinas.map((index) => {
-            return index.nome;
-        });
-        const disciplineAverage = data.disciplinas.map((index) => {
-            console.log(index.media)
-            return index.media;
-
-        });
-
+        const disciplineName = data.aluno[0].Disciplinas.map((index) => {
+            return index.nome
+        })
+        const disciplineAverage = data.aluno[0].Disciplinas.map((index) => {
+            return index.media
+        })
 
         let arrayColors = [];
         disciplineAverage.forEach((mediaMateria) => {
@@ -54,30 +65,32 @@ const getStudentInformartions = (aluno) => {
             },
         });
 
-        myChart.data.labels = disciplineName;
-        myChart.data.datasets[0].data = disciplineAverage;
-        myChart.update();
     }
 
     const studentsInfo = async() => {
-        const data = await fetchData();
-        const container = document.getElementById("informations");
+        let aluno = await fetchData()
+        console.log(aluno);
+        const container = document.getElementById("container");
 
-        const studentProfile = document.getElementById("student-profile");
-        studentProfile.classList.add("student-profile");
+        let studentProfile = document.getElementById('container-aluno-unico')
 
-        const studentName = document.createElement('p')
-        studentName.textContent = data.nome
+        let card = document.createElement('div')
+        card.classList.add('card-aluno-unico')
 
-        const studentImage = document.createElement('img')
-        studentImage.classList.add('student-image')
-        studentImage.src = data.foto
+        let img = document.createElement('img')
+        img.classList.add('img-aluno-unico')
+        img.src = aluno.aluno[0].Foto
 
-        studentProfile.append(studentName, studentImage)
+        let nome = document.createElement('p')
+        nome.classList.add('nome')
+        nome.textContent = aluno.aluno[0].Aluno
+
+        card.append(img, nome)
+        studentProfile.append(card)
         container.replaceChildren(studentProfile, ctx);
     };
 
     studentsInfo();
     updateChart();
 };
-getStudentInformartions(20151001024);
+getStudentInformartions();
