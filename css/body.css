@@ -1,0 +1,12 @@
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 140px;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width:640px) {
+    body {
+        width: 100vw;
+    }
+}
