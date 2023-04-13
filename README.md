@@ -16,5 +16,6 @@ O objetivo deste projeto é colocar em prática os conhecimentos adquiridos no c
 - Figma
 
 ---
-## Autor
+## Autores
 - [Vinícius Alves](https://github.com/Vini01072003)
+- [Cleiton Cruz] ()
