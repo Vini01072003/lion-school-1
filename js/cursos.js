@@ -1,21 +1,45 @@
 'use strict'
 
+//Constante que faz a criação do dos cards chmando pelo parametro de curso
 const criarCardsCurso = (curso) => {
+
 
     let nome = curso.nome.split(' ')[4] + ' ' + curso.nome.split(' ')[5] + ' ' + curso.nome.split(' ')[6]
 
-
+    //Constant que cria o elemento na constante card
     const card = document.createElement('a')
+
+    //Card que tem a propriedade "href" para ser criada no caminho "tela-alunos"
     card.href = "../html/tela-alunos.html"
+
+    //Card que vai ser adicionado no elemento "box"
     card.classList.add('box')
+
+    //Card que tem a propriedade "id" e vai filtrar o curso pela sigla
     card.id = curso.sigla
 
+
+    //Constante que img que vai criar o elemento img
     const img = document.createElement('img')
+
+
+    //Img vai adicionar no parametro imagem
     img.classList.add('imagem')
+
+
+    //Img com a propriedade de string "src" vai receber o curso pela sigla e adicionar na pasta img
     img.src = `../img/${curso.sigla}.png`
 
+
+  //Costante nome vai receber o elemento criado "span"
     const name = document.createElement('span')
+
+
+    //Dentro da propriedade nome vai ser adicionado o prametro "nome"
     name.classList.add('nome')
+
+
+    
     name.textContent = nome
 
     card.append(img, name)
