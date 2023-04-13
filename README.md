@@ -18,4 +18,4 @@ O objetivo deste projeto é colocar em prática os conhecimentos adquiridos no c
 ---
 ## Autores
 - [Vinícius Alves](https://github.com/Vini01072003)
-- [Cleiton Cruz] (https://github.com/Cotilen)
+- [Cleiton Cruz](https://github.com/Cotilen)
